@@ -64,7 +64,7 @@ void Foam::Module::cartesianMeshGenerator::createCartesianMesh()
 
     if
     (
-        meshDict_.lookupOrDefault<bool>
+        meshDict_.getOrDefault<bool>
         (
             "decomposePolyhedraIntoTetsAndPyrs",
             false
@@ -177,11 +177,7 @@ void Foam::Module::cartesianMeshGenerator::optimiseFinalMesh()
 {
     // untangle the surface if needed
     const bool enforceConstraints =
-        meshDict_.lookupOrDefault<bool>
-        (
-            "enforceGeometryConstraints",
-            false
-        );
+        meshDict_.getOrDefault<bool>("enforceGeometryConstraints", false);
 
     if (true)
     {

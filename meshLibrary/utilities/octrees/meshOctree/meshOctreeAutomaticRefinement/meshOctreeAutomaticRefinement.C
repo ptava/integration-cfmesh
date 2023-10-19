@@ -180,9 +180,9 @@ Foam::Module::meshOctreeAutomaticRefinement::meshOctreeAutomaticRefinement
     curvaturePtr_(nullptr),
     maxRefLevel_(0)
 {
-    if (!useDATABoxes_ && dict.found("keepCellsIntersectingBoundary"))
+    if (!useDATABoxes_)
     {
-        useDATABoxes_ = readBool(dict.lookup("keepCellsIntersectingBoundary"));
+        dict.readIfPresent("keepCellsIntersectingBoundary", useDATABoxes_);
     }
 
     // calculate maximum allowed refinement level from the minimum cell size

@@ -149,11 +149,7 @@ void Foam::Module::tetMeshGenerator::optimiseFinalMesh()
 {
     // final optimisation
     const bool enforceConstraints =
-        meshDict_.lookupOrDefault<bool>
-        (
-            "enforceGeometryConstraints",
-            false
-        );
+        meshDict_.getOrDefault<bool>("enforceGeometryConstraints", false);
 
     meshOptimizer optimizer(mesh_);
     if (enforceConstraints)

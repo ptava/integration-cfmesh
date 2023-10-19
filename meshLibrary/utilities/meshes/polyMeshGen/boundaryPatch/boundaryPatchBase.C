@@ -63,7 +63,7 @@ Foam::Module::boundaryPatchBase::New
     const dictionary& dict
 )
 {
-    word type(dict.lookup("type"));
+    word type(dict.get<word>("type"));
 
     // Check patch type - allowed types are processor and patch
     // Other patch types are treated as ordinary patches
@@ -125,9 +125,9 @@ Foam::Module::boundaryPatchBase::boundaryPatchBase
 )
 :
     name_(name),
-    type_(dict.lookup("type")),
-    nFaces_(readLabel(dict.lookup("nFaces"))),
-    startFace_(readLabel(dict.lookup("startFace")))
+    type_(dict.get<word>("type")),
+    nFaces_(dict.get<label>("nFaces")),
+    startFace_(dict.get<label>("startFace"))
 {}
 
 

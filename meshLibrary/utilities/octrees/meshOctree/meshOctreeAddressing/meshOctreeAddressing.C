@@ -142,12 +142,12 @@ Foam::Module::meshOctreeAddressing::meshOctreeAddressing
     globalLeafToLocalPtr_(nullptr),
     leafAtProcsPtr_(nullptr)
 {
-    if (!useDATABoxes && dict.found("keepCellsIntersectingBoundary"))
+    if (!useDATABoxes_)
     {
-        useDATABoxes_ = readBool(dict.lookup("keepCellsIntersectingBoundary"));
+        dict.readIfPresent("keepCellsIntersectingBoundary", useDATABoxes_);
     }
 
-    if (dict.lookupOrDefault<bool>("nonManifoldMeshing", false))
+    if (dict.getOrDefault<bool>("nonManifoldMeshing", false))
     {
         useDATABoxes_ = true;
     }

@@ -41,7 +41,7 @@ void Foam::Module::meshOctreeAddressing::checkGluedRegions()
     if
     (
         !useDATABoxes_
-     || !meshDict_.lookupOrDefault<bool>("checkForGluedMesh", false)
+     || !meshDict_.getOrDefault<bool>("checkForGluedMesh", false)
     )
     {
         return;

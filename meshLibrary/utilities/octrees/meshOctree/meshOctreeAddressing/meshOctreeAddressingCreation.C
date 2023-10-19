@@ -520,7 +520,7 @@ void Foam::Module::meshOctreeAddressing::findUsedBoxes() const
             boxType[leafI] |= MESHCELL;
     }
 
-    if (meshDict_.lookupOrDefault<bool>("nonManifoldMeshing", false))
+    if (meshDict_.getOrDefault<bool>("nonManifoldMeshing", false))
     {
         # ifdef USE_OMP
         # pragma omp parallel for schedule(dynamic, 40)

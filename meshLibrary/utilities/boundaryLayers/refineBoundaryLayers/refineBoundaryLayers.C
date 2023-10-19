@@ -499,7 +499,7 @@ void Foam::Module::refineBoundaryLayers::readSettings
 
                     if
                     (
-                        patchDict.lookupOrDefault<bool>
+                        patchDict.getOrDefault<bool>
                         (
                             "allowDiscontinuity",
                             false

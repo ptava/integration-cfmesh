@@ -301,9 +301,9 @@ void Foam::Module::boxScaling::operator=(const dictionary& d)
         lengthVec_.z() = 0.0;
     }
 
-    scaleVec_.x() = dict.lookupOrDefault<scalar>("scaleX", 1.0);
-    scaleVec_.y() = dict.lookupOrDefault<scalar>("scaleY", 1.0);
-    scaleVec_.z() = dict.lookupOrDefault<scalar>("scaleZ", 1.0);
+    scaleVec_.x() = dict.getOrDefault<scalar>("scaleX", 1.0);
+    scaleVec_.y() = dict.getOrDefault<scalar>("scaleY", 1.0);
+    scaleVec_.z() = dict.getOrDefault<scalar>("scaleZ", 1.0);
 
     calculateBndBox();
 }
