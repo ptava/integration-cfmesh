@@ -7,11 +7,11 @@ cd "${0%/*}" || exit                                # Run from this directory
 #------------------------------------------------------------------------------
 moduleName="cfmesh"
 
-if [ "$FOAM_MODULE_PREFIX" = false ]
-then
-    echo "Compilation of $moduleName is disabled (prefix=false)"
+case "$FOAM_MODULE_PREFIX" in
+(false | none)
+    echo "Compilation of $moduleName is disabled (prefix=${FOAM_MODULE_PREFIX})"
     exit 0
-fi
+esac
 
 # Disable use of openmp...
 unset without_openmp
