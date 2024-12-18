@@ -527,8 +527,8 @@ Foam::label Foam::Module::help::groupMarking
         }
 
         // broadcast group labels from the master to other processors
-        Pstream::scatter(nGroups);
-        Pstream::scatter(allGroupsNewLabel);
+        Pstream::broadcast(nGroups);
+        Pstream::broadcast(allGroupsNewLabel);
 
         // assign correct group labels
         forAll(globalGroupLabel, groupI)
