@@ -36,6 +36,8 @@ Description
 #include "polyMeshGenModifier.H"
 #include "meshOptimizer.H"
 
+#include "cellSet.H"
+
 using namespace Foam;
 using namespace Foam::Module;
 
@@ -56,7 +58,7 @@ int main(int argc, char *argv[])
     argList::addOption("nIterations", "int");
     argList::addOption("nSurfaceIterations", "int");
     argList::addOption("qualityThreshold", "scalar");
-    argList::addOption("constrainedCellsSet", "word");
+    argList::addOption("constrainedCellSet", "word");
 
     #include "setRootCase.H"
     #include "createTime.H"
@@ -107,18 +109,31 @@ int main(int argc, char *argv[])
 
     if (!constrainedCellSet.empty())
     {
-        // lock cells in constrainedCellSet
+        // lock cells in constrainedCellSet 
+        // problem: maybe in lockCellsInSubset: look at cellsInSubset
         mOpt.lockCellsInSubset(constrainedCellSet);
+
+        // temp workaround
+        cellSet cellSetTest(runTime, constrainedCellSet);
+        mOpt.lockCells(cellSetTest.toc());
 
         // find boundary faces which shall be locked
         labelLongList lockedBndFaces, selectedCells;
 
         const label sId = pmg.cellSubsetIndex(constrainedCellSet);
+        boolList activeCell(pmg.cells().size(), false);
+        
+        // retrieve cellSet labels
+        // problem: maybe in cellsInSubset function
+        // look at cellSet->second.containedElements(cellLabels)
         pmg.cellsInSubset(sId, selectedCells);
 
-        boolList activeCell(pmg.cells().size(), false);
-        forAll(selectedCells, i)
-            activeCell[selectedCells[i]] = true;
+        // temp workaround
+        forAll(cellSetTest.toc(), i)
+        {
+            const label selectedCell = cellSetTest.toc()[i];
+            activeCell[selectedCell] = true;
+        }
     }
 
     // clear geometry information before volume smoothing
