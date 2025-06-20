@@ -170,6 +170,7 @@ Foam::label Foam::Module::polyMeshGenModifier::addProcessorPatch
             "processor",
             0,
             0,
+            {},
             Pstream::myProcNo(),
             otherProcLabel
         )

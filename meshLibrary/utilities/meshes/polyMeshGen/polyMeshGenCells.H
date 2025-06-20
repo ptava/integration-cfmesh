@@ -118,7 +118,9 @@ public:
             const cellList& cells,
             const wordList& patchNames,
             const labelList& patchStart,
-            const labelList& nFacesInPatch
+            const labelList& nFacesInPatch,
+            const List<wordList>& patchInGroups
+
         );
 
 

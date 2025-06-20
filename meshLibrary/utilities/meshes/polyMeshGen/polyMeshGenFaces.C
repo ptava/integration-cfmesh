@@ -105,7 +105,8 @@ Foam::Module::polyMeshGenFaces::polyMeshGenFaces
     const faceList& faces,
     const wordList& patchNames,
     const labelList& patchStart,
-    const labelList& nFacesInPatch
+    const labelList& nFacesInPatch,
+    const List<wordList>& patchInGroups
 )
 :
     polyMeshGenPoints(runTime, points),
@@ -144,7 +145,8 @@ Foam::Module::polyMeshGenFaces::polyMeshGenFaces
                 patchNames[patchI],
                 "patch",
                 nFacesInPatch[patchI],
-                patchStart[patchI]
+                patchStart[patchI],
+                patchInGroups[patchI]
             )
         );
     }
@@ -448,7 +450,8 @@ void Foam::Module::polyMeshGenFaces::read()
                     patches[patchI].patchName(),
                     patches[patchI].patchType(),
                     patches[patchI].patchSize(),
-                    patches[patchI].patchStart()
+                    patches[patchI].patchStart(),
+                    patches[patchI].inGroups()
                 )
             );
             ++i;
@@ -524,6 +527,15 @@ void Foam::Module::polyMeshGenFaces::write() const
         dict.add("type", boundaries_[patchI].patchType());
         dict.add("nFaces", boundaries_[patchI].patchSize());
         dict.add("startFace", boundaries_[patchI].patchStart());
+        const wordList& groups = boundaries_[patchI].inGroups();
+        if(!groups.empty())
+        {
+            dict.add("inGroups", groups);
+        }
+        else
+        {
+            Info << groups << endl;
+        }
         ptchs.set
         (
             i++,

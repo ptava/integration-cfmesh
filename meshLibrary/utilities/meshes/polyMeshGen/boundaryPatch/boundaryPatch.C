@@ -55,10 +55,11 @@ Foam::Module::boundaryPatch::boundaryPatch
     const word& n,
     const word& t,
     const label nF,
-    const label sF
+    const label sF,
+    const wordList& iG
 )
 :
-    boundaryPatchBase(n, t, nF, sF)
+    boundaryPatchBase(n, t, nF, sF, iG)
 {}
 
 
@@ -81,6 +82,7 @@ Foam::dictionary Foam::Module::boundaryPatch::dict() const
     dict.add("type", type_);
     dict.add("nFaces", nFaces_);
     dict.add("startFace", startFace_);
+    dict.add("inGroups", inGroups_);
 
     return dict;
 }
@@ -106,8 +108,12 @@ Foam::Ostream& Foam::Module::boundaryPatch::operator<<
     os  << name_ << nl << token::BEGIN_BLOCK << nl
         << "    type " << type_ << token::END_STATEMENT << nl
         << "    nFaces " << nFaces_ << token::END_STATEMENT << nl
-        << "    startFace " << startFace_ << token::END_STATEMENT << nl
-        << token::END_BLOCK << endl;
+        << "    startFace " << startFace_ << token::END_STATEMENT << endl;
+        if (!inGroups_.empty())
+        {
+            os << "    inGroups " << inGroups_ << token::END_STATEMENT << endl;
+        }
+    os  << token::END_BLOCK << endl;
 
     return os;
 }
@@ -123,6 +129,10 @@ Foam::Istream& Foam::Module::boundaryPatch::operator>>
     is >> t >> type_ >> t;
     is >> t >> nFaces_ >> t;
     is >> t >> startFace_ >> t;
+    if (!inGroups_.empty())
+    {
+        is >> t >> inGroups_ >> t;
+    }
     is >> t;
 
     return is;
@@ -140,6 +150,10 @@ bool Foam::Module::boundaryPatch::operator!=(const boundaryPatch& wp) const
         return true;
     }
     else if ((nFaces_ != wp.nFaces_) || (startFace_ != wp.startFace_))
+    {
+        return true;
+    }
+    else if (inGroups_ != wp.inGroups_)
     {
         return true;
     }

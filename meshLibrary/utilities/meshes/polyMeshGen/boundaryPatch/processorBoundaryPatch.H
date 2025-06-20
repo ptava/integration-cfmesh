@@ -79,6 +79,7 @@ public:
             const word& type,
             const label nFaces,
             const label startFace,
+            const wordList& inGroups,
             const label myProcNo,
             const label neighbProcNo
         );
@@ -96,6 +97,7 @@ public:
                     patchType(),
                     patchSize(),
                     patchStart(),
+                    inGroups(),
                     myProcNo_,
                     neighbProcNo_
                 )
@@ -115,6 +117,7 @@ public:
                     pp.patchType(),
                     pp.patchSize(),
                     pp.patchStart(),
+                    pp.inGroups(),
                     pp.myProcNo_,
                     pp.neighbProcNo_
                 )

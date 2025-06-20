@@ -62,11 +62,12 @@ Foam::Module::processorBoundaryPatch::processorBoundaryPatch
     const word& type,
     const label nFaces,
     const label startFace,
+    const wordList& inGroups,
     const label myProcNo,
     const label neighbProcNo
 )
 :
-    boundaryPatchBase(name, type, nFaces, startFace),
+    boundaryPatchBase(name, type, nFaces, startFace, inGroups),
     myProcNo_(myProcNo),
     neighbProcNo_(neighbProcNo)
 {}
@@ -94,6 +95,7 @@ Foam::dictionary Foam::Module::processorBoundaryPatch::dict() const
 
     dict.add("nFaces", nFaces_);
     dict.add("startFace", startFace_);
+    dict.add("inGroups", inGroups_);
     dict.add("myProcNo", myProcNo_);
     dict.add("neighbProcNo", neighbProcNo_);
 

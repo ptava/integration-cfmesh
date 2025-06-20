@@ -108,13 +108,15 @@ Foam::Module::boundaryPatchBase::boundaryPatchBase
     const word& n,
     const word& t,
     const label nF,
-    const label sF
+    const label sF,
+    const wordList& iG
 )
 :
     name_(n),
     type_(t),
     nFaces_(nF),
-    startFace_(sF)
+    startFace_(sF),
+    inGroups_(iG)
 {}
 
 
@@ -127,7 +129,8 @@ Foam::Module::boundaryPatchBase::boundaryPatchBase
     name_(name),
     type_(dict.get<word>("type")),
     nFaces_(dict.get<label>("nFaces")),
-    startFace_(dict.get<label>("startFace"))
+    startFace_(dict.get<label>("startFace")),
+    inGroups_(dict.getOrDefault<wordList>("inGroups", {}))
 {}
 
 

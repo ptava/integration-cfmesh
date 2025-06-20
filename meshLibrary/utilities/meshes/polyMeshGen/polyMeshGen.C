@@ -84,7 +84,8 @@ Foam::Module::polyMeshGen::polyMeshGen
     const cellList& cells,
     const wordList& patchNames,
     const labelList& patchStart,
-    const labelList& nFacesInPatch
+    const labelList& nFacesInPatch,
+    const List<wordList>& patchInGroups
 )
 :
     polyMeshGenCells
@@ -95,7 +96,8 @@ Foam::Module::polyMeshGen::polyMeshGen
         cells,
         patchNames,
         patchStart,
-        nFacesInPatch
+        nFacesInPatch,
+        patchInGroups
     ),
     metaDict_
     (

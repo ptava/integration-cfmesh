@@ -288,7 +288,8 @@ Foam::Module::polyMeshGenCells::polyMeshGenCells
     const cellList& cells,
     const wordList& patchNames,
     const labelList& patchStart,
-    const labelList& nFacesInPatch
+    const labelList& nFacesInPatch,
+    const List<wordList>& patchInGroups
 )
 :
     polyMeshGenFaces
@@ -298,7 +299,8 @@ Foam::Module::polyMeshGenCells::polyMeshGenCells
         faces,
         patchNames,
         patchStart,
-        nFacesInPatch
+        nFacesInPatch,
+        patchInGroups
     ),
     cells_(),
     cellSubsets_(),

@@ -72,6 +72,8 @@ protected:
 
         label startFace_;
 
+        wordList inGroups_;
+
 
 public:
 
@@ -86,7 +88,8 @@ public:
             const word&,
             const word&,
             const label,
-            const label
+            const label,
+            const wordList&
         );
 
         boundaryPatchBase(const word& name, const dictionary&);
@@ -180,6 +183,16 @@ public:
         inline label& patchSize()
         {
             return nFaces_;
+        }
+
+        inline wordList& inGroups()
+        {
+            return inGroups_;
+        }
+
+        inline const wordList& inGroups() const
+        {
+            return inGroups_;
         }
 
         //- Return as dictionary of entries

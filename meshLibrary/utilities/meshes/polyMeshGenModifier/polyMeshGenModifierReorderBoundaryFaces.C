@@ -207,7 +207,8 @@ void Foam::Module::polyMeshGenModifier::reorderBoundaryFaces()
                 "defaultFaces",
                 "patch",
                 numBFaces,
-                nInternalFaces
+                nInternalFaces,
+                {}
             )
         );
     }
@@ -329,7 +330,8 @@ void Foam::Module::polyMeshGenModifier::reorderProcBoundaryFaces()
                 "defaultFaces",
                 "patch",
                 procBoundaries[0].patchStart() - start,
-                start
+                start,
+                {}
             )
         );
     }

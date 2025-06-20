@@ -69,7 +69,8 @@ public:
             const word&,
             const word&,
             const label,
-            const label
+            const label,
+            const wordList&
         );
 
         boundaryPatch(const word& name, const dictionary&);
@@ -86,7 +87,8 @@ public:
                     patchName(),
                     patchType(),
                     patchSize(),
-                    patchStart()
+                    patchStart(),
+                    inGroups()
                 )
             );
         }
@@ -100,7 +102,8 @@ public:
                     wp.patchName(),
                     wp.patchType(),
                     wp.patchSize(),
-                    wp.patchStart()
+                    wp.patchStart(),
+                    wp.inGroups()
                 )
             );
         }

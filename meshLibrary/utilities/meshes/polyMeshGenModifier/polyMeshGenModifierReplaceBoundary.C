@@ -194,7 +194,8 @@ void Foam::Module::polyMeshGenModifier::replaceBoundary
                     patchNames[patchI],
                     "patch",
                     newPatchSize[patchI],
-                    newPatchStart[patchI]
+                    newPatchStart[patchI],
+                    {}
                 )
             );
         }

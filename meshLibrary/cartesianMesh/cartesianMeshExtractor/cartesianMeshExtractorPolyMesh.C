@@ -169,6 +169,7 @@ void Foam::Module::cartesianMeshExtractor::createPolyMesh()
                     "processor",
                     iter->second.size(),
                     0,
+                    {},
                     Pstream::myProcNo(),
                     procI
                 )
