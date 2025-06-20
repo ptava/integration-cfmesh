@@ -1,10 +1,25 @@
-#                            -*- mode: org; -*-
-#
-#+TITLE:                       *cfMesh README*
-#+AUTHOR:                      Franjo Juretic.
-#+DATE:                           October 2016
-#+LINK:                  http://www.cfmesh.com
-#+OPTIONS:
+# Disclaimer
+
+This repository is a copy of the original project hosted on GitLab:
+[original repository](https://develop.openfoam.com/Community/integration-cfmesh)
+
+It has been cloned on 20/06/2025 and made available here on GitHub for convenience and accessibility.
+
+Last original commit: *3ff8555514827646c34cacfe5f0f691e49cdbc96* "COMP: scatter v.s. broadcast"
+
+The original GitLab repository may contain additional context, contributions, or updates.
+
+**All credit for the original work belongs to the respective authors and contributors of the GitLab project.**
+
+If you are the original author and would like this mirror modified or removed, please contact the maintainer.
+
+
+# cfmesh-integration
+
+**TITLE**:                       *cfMesh README*
+**AUTHOR**:                      Franjo Juretic.
+**DATE**:                           October 2016
+**LINK**:                  http://www.cfmesh.com
 
 cfMesh is a library for mesh generation built on OpenFOAM.
 
