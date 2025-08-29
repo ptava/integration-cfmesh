@@ -20,4 +20,4 @@ EXE_LIBS = \
     -lsurfMesh \
     -lmeshTools \
     -lfiniteVolume \
-    -L$(FOAM_MODULE_LIBBIN) -lmeshLibrary
+    -L$(FOAM_MODULE_LIBBIN) -lmymeshLibrary
