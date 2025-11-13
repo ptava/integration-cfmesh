@@ -109,30 +109,15 @@ int main(int argc, char *argv[])
 
     if (!constrainedCellSet.empty())
     {
-        // lock cells in constrainedCellSet 
-        // problem: maybe in lockCellsInSubset: look at cellsInSubset
-        mOpt.lockCellsInSubset(constrainedCellSet);
-
-        // temp workaround
+        // TODO: find issue, this is a temp workaround
         cellSet cellSetTest(runTime, constrainedCellSet);
         mOpt.lockCells(cellSetTest.toc());
 
-        // find boundary faces which shall be locked
-        labelLongList lockedBndFaces, selectedCells;
-
-        const label sId = pmg.cellSubsetIndex(constrainedCellSet);
         boolList activeCell(pmg.cells().size(), false);
         
-        // retrieve cellSet labels
-        // problem: maybe in cellsInSubset function
-        // look at cellSet->second.containedElements(cellLabels)
-        pmg.cellsInSubset(sId, selectedCells);
-
-        // temp workaround
-        forAll(cellSetTest.toc(), i)
+        for (const label celli : cellSetTest.toc())
         {
-            const label selectedCell = cellSetTest.toc()[i];
-            activeCell[selectedCell] = true;
+            activeCell[celli] = true;
         }
     }
 
