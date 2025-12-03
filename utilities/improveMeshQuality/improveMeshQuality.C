@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
         boolList activeCell(pmg.cells().size(), false);
         
-        for (const label celli : cellSetTest.toc())
+        for (const label& celli : cellSetTest.toc())
         {
             activeCell[celli] = true;
         }
